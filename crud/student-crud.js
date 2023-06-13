@@ -8,7 +8,13 @@ class studentCrud {
   }
 
   async createStudent(requestBody) {
-    return await this.student.create(requestBody);
+    try {
+      return await this.connection.transaction(async (t) => {
+        return await this.student.create(requestBody, { transaction: t });
+      });
+    } catch (error) {
+      return error;
+    }
   }
 }
 
