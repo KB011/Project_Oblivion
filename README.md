@@ -14,6 +14,6 @@ We are creating the first table for the database namely `Students` having column
 
 # Undoing Migrations
 
-If we want to revert only the latest migration, we run the command `npx sequelize-cli db:migrate:undo`
-If we want to revert all the migrations, we run `npx sequelize-cli db:migrate:undo:all`
-If we want to revert to a specific migration, we run `npx sequelize-cli db:migrate:undo:all --to <migration-filename>`
+1. If we want to revert only the latest migration, we run the command `npx sequelize-cli db:migrate:undo`
+2. If we want to revert all the migrations, we run `npx sequelize-cli db:migrate:undo:all`
+3. If we want to revert to a specific migration, we run `npx sequelize-cli db:migrate:undo:all --to <migration-filename>`
