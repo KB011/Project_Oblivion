@@ -22,14 +22,31 @@ module.exports = (sequelize, DataTypes) => {
       firstName: {
         type: DataTypes.STRING,
         allowNull: false,
+        validate: {
+          isAlpha: true,
+          notEmpty: true,
+        },
       },
       lastName: {
         type: DataTypes.STRING,
         allowNull: false,
+        validate: {
+          isAlpha: true,
+          notEmpty: true,
+        },
       },
       dob: {
         type: DataTypes.DATEONLY,
         allowNull: false,
+        validate: {
+          //Age between 5 - 15
+          verifyAge(value) {
+            const yearOfBirth = value.split("-")[0];
+            const age = 2023 - yearOfBirth;
+            if (age < 5 || age > 15)
+              throw new Error("Age should be between 5 and 15");
+          },
+        },
       },
       createdAt: {
         allowNull: false,
