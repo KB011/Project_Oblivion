@@ -2,6 +2,7 @@ const express = require("express");
 const app = express();
 
 const db = require(__dirname + "/database");
+const { addStudent } = require(__dirname + "/rest/student-rest.js");
 
 app.use(express.json());
 
@@ -18,7 +19,7 @@ app.post("/", (req, res) => {
   });
 });
 
-app.post("/students", (req, res) => {});
+app.post("/students", addStudent);
 
 app.listen(4000, async () => {
   try {
