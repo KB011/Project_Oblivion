@@ -1,7 +1,7 @@
 const express = require("express");
 const app = express();
 
-const db = require(__dirname + "/database");
+const { sequelize } = require(__dirname + "/models/index.js");
 const { addStudent } = require(__dirname + "/rest/student-rest.js");
 
 app.use(express.json());
@@ -23,7 +23,7 @@ app.post("/students", addStudent);
 
 app.listen(4000, async () => {
   try {
-    await db.authenticate();
+    await sequelize.authenticate();
     console.log(
       "Connected to PostgreSQL Docker Instance successfully at port 5432"
     );

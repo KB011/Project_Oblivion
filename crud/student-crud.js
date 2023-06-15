@@ -1,21 +1,14 @@
-const studentModel = require(__dirname + "/../models/student.js");
+const { db, sequelize } = require(__dirname + "/../models/index.js");
+const Student = db["Student"];
 
-class studentCrud {
-  constructor(connection, dataTypes) {
-    this.connection = connection;
-    this.dataTypes = dataTypes;
-    this.student = studentModel(connection, dataTypes);
-  }
-
-  async createStudent(requestBody) {
-    try {
-      return await this.connection.transaction(async (t) => {
-        return await this.student.create(requestBody, { transaction: t });
-      });
-    } catch (error) {
-      return error;
-    }
+async function createStudent(requestBody) {
+  try {
+    return await sequelize.transaction(async (t) => {
+      return await Student.create(requestBody, { transaction: t });
+    });
+  } catch (error) {
+    return error;
   }
 }
 
-module.exports = studentCrud;
+module.exports = { createStudent };
