@@ -1,5 +1,7 @@
 const { db, sequelize } = require(__dirname + "/../models/index.js");
-const Student = db["Student"];
+const fileName = __filename.split("\\").at(-1);
+const modelName = require(__dirname + "/../models/modelNames.json")[fileName];
+const Student = db[modelName];
 
 async function createStudent(requestBody) {
   try {
