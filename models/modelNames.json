@@ -1,0 +1,4 @@
+{
+  "__comment__": "Maps filename in crud folder with model name",
+  "student-crud.js": "Student"
+}
